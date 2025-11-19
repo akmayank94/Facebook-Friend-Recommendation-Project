@@ -35,9 +35,9 @@ try:
     communities_df = pd.read_csv('results/communities_louvain.csv')
     communities_dict = dict(zip(communities_df['Node'], communities_df['Community_Louvain']))
 
-    print(f"✓ Training network: {G_train.number_of_nodes()} nodes, {G_train.number_of_edges()} edges")
-    print(f"✓ Test edges (ground truth): {len(test_edges)} edges")
-    print(f"✓ Communities loaded: {len(set(communities_dict.values()))} communities")
+    print(f"Training network: {G_train.number_of_nodes()} nodes, {G_train.number_of_edges()} edges")
+    print(f"Test edges (ground truth): {len(test_edges)} edges")
+    print(f"Communities loaded: {len(set(communities_dict.values()))} communities")
 
 except FileNotFoundError as e:
     print(f"ERROR: {e}")
@@ -85,7 +85,7 @@ while len(candidate_pairs) < sample_size and attempts < max_attempts:
 
     attempts += 1
 
-print(f"✓ Generated {len(candidate_pairs)} candidate pairs (non-edges)")
+print(f"Generated {len(candidate_pairs)} candidate pairs (non-edges)")
 print(f"  Using as negative examples for evaluation")
 
 # ============================================================================
@@ -155,7 +155,7 @@ for u, v in candidate_pairs:
     test_scores['community_match'].append(1 if communities_dict.get(u) == communities_dict.get(v) else 0)
     test_scores['label'].append(0)  # Label: 0 = not an edge
 
-print(f"✓ Calculated scores for {len(test_scores['label'])} pairs")
+print(f"Calculated scores for {len(test_scores['label'])} pairs")
 print(f"  Positive examples (true edges): {sum(test_scores['label'])}")
 print(f"  Negative examples (non-edges): {len(test_scores['label']) - sum(test_scores['label'])}")
 
@@ -191,7 +191,7 @@ scores_df['community_boost'] = scores_df['combined_score'] * (
     1 + boost_factor * scores_df['community_match']
 )
 
-print("✓ Dataframe created with 6 score columns")
+print("Dataframe created with 6 score columns")
 print(f"  Columns: cnn, jaccard, adamic-adar, preferential_attachment,")
 print(f"           combined_score, community_boost")
 
@@ -272,10 +272,10 @@ print("\n[STEP 6] Saving results...")
 os.makedirs('results', exist_ok=True)
 
 scores_df.to_csv('results/link_prediction_scores.csv', index=False)
-print("✓ Saved: results/link_prediction_scores.csv")
+print("Saved: results/link_prediction_scores.csv")
 
 results_df.to_csv('results/link_prediction_evaluation.csv', index=False)
-print("✓ Saved: results/link_prediction_evaluation.csv")
+print("Saved: results/link_prediction_evaluation.csv")
 
 # ============================================================================
 # STEP 7: CREATE VISUALIZATIONS
@@ -309,7 +309,7 @@ for idx, (method, title) in enumerate(zip(methods_to_plot, titles)):
 
 plt.tight_layout()
 plt.savefig('results/visualizations/score_distributions.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/score_distributions.png")
+print("Saved: results/visualizations/score_distributions.png")
 plt.close()
 
 # Visualization 2: AUC-ROC Comparison
@@ -335,7 +335,7 @@ ax.legend(loc='lower right', fontsize=10)
 ax.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig('results/visualizations/roc_curves.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/roc_curves.png")
+print("Saved: results/visualizations/roc_curves.png")
 plt.close()
 
 # Visualization 3: Precision@k, Recall@k, F1@k Comparison
@@ -382,7 +382,7 @@ for metric_idx, metric in enumerate(metrics):
 
 plt.tight_layout()
 plt.savefig('results/visualizations/metrics_comparison.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/metrics_comparison.png")
+print("Saved: results/visualizations/metrics_comparison.png")
 plt.close()
 
 # ============================================================================
@@ -496,7 +496,7 @@ print(summary)
 with open('results/link_prediction_summary.txt', 'w', encoding='utf-8') as f:
     f.write(summary)
 
-print("✓ Saved: results/link_prediction_summary.txt")
+print("Saved: results/link_prediction_summary.txt")
 
 # ============================================================================
 # FINAL COMPLETION MESSAGE

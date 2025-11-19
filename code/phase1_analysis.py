@@ -39,7 +39,7 @@ try:
         nodetype=int,
         comments='#'
     )
-    print("✓ Network loaded successfully!")
+    print("Network loaded successfully!")
     print(f"  Nodes: {G.number_of_nodes()}")
     print(f"  Edges: {G.number_of_edges()}")
 except Exception as e:
@@ -138,7 +138,7 @@ print("=" * 80)
 # Save summary
 os.makedirs('results', exist_ok=True)
 df_summary.to_csv('results/network_properties_summary.csv', index=False)
-print("✓ Summary saved: results/network_properties_summary.csv")
+print("Summary saved: results/network_properties_summary.csv")
 
 # ============================================================================
 # 4: CREATE DEGREE DISTRIBUTION VISUALIZATION
@@ -173,7 +173,7 @@ plt.tight_layout()
 # Create visualizations directory
 os.makedirs('results/visualizations', exist_ok=True)
 plt.savefig('results/visualizations/degree_distribution.png', dpi=300, bbox_inches='tight')
-print("✓ Visualization saved: results/visualizations/degree_distribution.png")
+print("Visualization saved: results/visualizations/degree_distribution.png")
 plt.close()
 
 # ============================================================================
@@ -204,22 +204,22 @@ os.makedirs('results/networks', exist_ok=True)
 
 with open('results/networks/G_original.pkl', 'wb') as f:
     pickle.dump(G, f)
-print("  ✓ Original graph saved: G_original.pkl")
+print("Original graph saved: G_original.pkl")
 
 with open('results/networks/G_train.pkl', 'wb') as f:
     pickle.dump(G_train, f)
-print("  ✓ Training graph saved: G_train.pkl")
+print("Training graph saved: G_train.pkl")
 
 with open('results/networks/test_edges.pkl', 'wb') as f:
     pickle.dump(test_edges, f)
-print("  ✓ Test edges saved: test_edges.pkl")
+print("Test edges saved: test_edges.pkl")
 
 # ============================================================================
 # PHASE 1 COMPLETE
 # ============================================================================
 
 print("" + "=" * 80)
-print("✓ PHASE 1 COMPLETE!")
+print("PHASE 1 COMPLETE!")
 print("=" * 80)
 print("Generated Files:")
 print("  ├─ results/network_properties_summary.csv")

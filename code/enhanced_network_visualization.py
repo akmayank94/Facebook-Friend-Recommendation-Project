@@ -24,8 +24,8 @@ with open('results/networks/G_train.pkl', 'rb') as f:
 communities_df = pd.read_csv('results/communities_louvain.csv')
 communities_dict = dict(zip(communities_df['Node'], communities_df['Community_Louvain']))
 
-print(f"✓ Network loaded: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges")
-print(f"✓ Communities: {len(set(communities_dict.values()))} detected")
+print(f"Network loaded: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges")
+print(f"Communities: {len(set(communities_dict.values()))} detected")
 
 # ============================================================================
 # VISUALIZATION 1: FULL NETWORK (ALL 4,039 NODES)
@@ -37,7 +37,7 @@ print("  This may take 2-3 minutes for 4,039 nodes...")
 # Create layout (use spring layout for organic look)
 print("  Computing layout (this is the slow part)...")
 pos = nx.spring_layout(G, k=0.15, iterations=20, seed=42)
-print("  ✓ Layout computed!")
+print("  Layout computed!")
 
 # Get unique communities and create color map
 unique_communities = sorted(set(communities_dict.values()))
@@ -106,7 +106,7 @@ plt.tight_layout()
 print("  Saving full network visualization...")
 plt.savefig('results/visualizations/network_full_communities.png', 
            dpi=300, bbox_inches='tight', facecolor='white')
-print("✓ Saved: results/visualizations/network_full_communities.png")
+print("Saved: results/visualizations/network_full_communities.png")
 plt.close()
 
 # ============================================================================
@@ -168,7 +168,7 @@ plt.tight_layout()
 
 plt.savefig('results/visualizations/network_largest_community_zoom.png',
            dpi=300, bbox_inches='tight', facecolor='white')
-print("✓ Saved: results/visualizations/network_largest_community_zoom.png")
+print("Saved: results/visualizations/network_largest_community_zoom.png")
 plt.close()
 
 # ============================================================================
@@ -229,7 +229,7 @@ plt.tight_layout()
 
 plt.savefig('results/visualizations/network_top5_communities.png',
            dpi=300, bbox_inches='tight', facecolor='white')
-print("✓ Saved: results/visualizations/network_top5_communities.png")
+print("Saved: results/visualizations/network_top5_communities.png")
 plt.close()
 
 # ============================================================================
@@ -278,7 +278,7 @@ plt.tight_layout()
 
 plt.savefig('results/visualizations/network_circular_communities.png',
            dpi=300, bbox_inches='tight', facecolor='white')
-print("✓ Saved: results/visualizations/network_circular_communities.png")
+print("Saved: results/visualizations/network_circular_communities.png")
 plt.close()
 
 # ============================================================================

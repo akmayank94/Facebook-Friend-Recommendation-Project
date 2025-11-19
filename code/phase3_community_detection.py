@@ -24,11 +24,11 @@ print("\n[STEP 1] Loading networks from Phase 1...")
 try:
     with open('results/networks/G_train.pkl', 'rb') as f:
         G_train = pickle.load(f)
-    print(f"✓ Training network loaded: {G_train.number_of_nodes()} nodes, {G_train.number_of_edges()} edges")
+    print(f"Training network loaded: {G_train.number_of_nodes()} nodes, {G_train.number_of_edges()} edges")
 
     with open('results/networks/G_original.pkl', 'rb') as f:
         G_original = pickle.load(f)
-    print(f"✓ Original network loaded: {G_original.number_of_nodes()} nodes, {G_original.number_of_edges()} edges")
+    print(f"Original network loaded: {G_original.number_of_nodes()} nodes, {G_original.number_of_edges()} edges")
 
 except FileNotFoundError as e:
     print(f"ERROR: Could not find Phase 1 files: {e}")
@@ -53,7 +53,7 @@ modularity_louvain = community_louvain.modularity(communities_louvain, G)
 num_communities_louvain = len(set(communities_louvain.values()))
 community_sizes_louvain = Counter(communities_louvain.values())
 
-print(f"✓ Louvain algorithm completed!")
+print(f"Louvain algorithm completed!")
 print(f"  Number of communities found: {num_communities_louvain}")
 print(f"  Modularity score: {modularity_louvain:.4f}")
 print(f"  Community sizes (top 10):")
@@ -88,7 +88,7 @@ modularity_greedy = nx.algorithms.community.modularity(G, communities_greedy)
 num_communities_greedy = len(communities_greedy)
 community_sizes_greedy = Counter(communities_greedy_dict.values())
 
-print(f"✓ Fast Greedy algorithm completed!")
+print(f"Fast Greedy algorithm completed!")
 print(f"  Number of communities found: {num_communities_greedy}")
 print(f"  Modularity score: {modularity_greedy:.4f}")
 print(f"  Community sizes (top 10):")
@@ -148,7 +148,7 @@ louvain_df = pd.DataFrame({
 })
 louvain_df = louvain_df.sort_values('Node')
 louvain_df.to_csv('results/communities_louvain.csv', index=False)
-print("✓ Saved: results/communities_louvain.csv")
+print("Saved: results/communities_louvain.csv")
 
 # Save Fast Greedy communities
 greedy_df = pd.DataFrame({
@@ -157,11 +157,11 @@ greedy_df = pd.DataFrame({
 })
 greedy_df = greedy_df.sort_values('Node')
 greedy_df.to_csv('results/communities_greedy.csv', index=False)
-print("✓ Saved: results/communities_greedy.csv")
+print("Saved: results/communities_greedy.csv")
 
 # Save comparison table
 comparison_df.to_csv('results/community_comparison.csv', index=False)
-print("✓ Saved: results/community_comparison.csv")
+print("Saved: results/community_comparison.csv")
 
 # Save detailed community analysis
 louvain_analysis = pd.DataFrame({
@@ -170,7 +170,7 @@ louvain_analysis = pd.DataFrame({
 })
 louvain_analysis = louvain_analysis.sort_values('Size_Louvain', ascending=False).reset_index(drop=True)
 louvain_analysis.to_csv('results/community_sizes_louvain.csv', index=False)
-print("✓ Saved: results/community_sizes_louvain.csv")
+print("Saved: results/community_sizes_louvain.csv")
 
 greedy_analysis = pd.DataFrame({
     'Community_ID': list(community_sizes_greedy.keys()),
@@ -178,7 +178,7 @@ greedy_analysis = pd.DataFrame({
 })
 greedy_analysis = greedy_analysis.sort_values('Size_Greedy', ascending=False).reset_index(drop=True)
 greedy_analysis.to_csv('results/community_sizes_greedy.csv', index=False)
-print("✓ Saved: results/community_sizes_greedy.csv")
+print("Saved: results/community_sizes_greedy.csv")
 
 # ============================================================================
 # STEP 6: CREATE VISUALIZATIONS
@@ -199,7 +199,7 @@ ax.set_title(f'Community Size Distribution - Louvain Algorithm (Ch. 5.4.2)\n{num
 ax.grid(True, alpha=0.3, axis='y')
 plt.tight_layout()
 plt.savefig('results/visualizations/community_sizes_louvain.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/community_sizes_louvain.png")
+print("Saved: results/visualizations/community_sizes_louvain.png")
 plt.close()
 
 # Visualization 2: Community size distribution (Fast Greedy)
@@ -213,7 +213,7 @@ ax.set_title(f'Community Size Distribution - Fast Greedy Algorithm (Ch. 5.4.2)\n
 ax.grid(True, alpha=0.3, axis='y')
 plt.tight_layout()
 plt.savefig('results/visualizations/community_sizes_greedy.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/community_sizes_greedy.png")
+print("Saved: results/visualizations/community_sizes_greedy.png")
 plt.close()
 
 # Visualization 3: Side-by-side comparison
@@ -235,7 +235,7 @@ axes[1].grid(True, alpha=0.3, axis='y')
 
 plt.tight_layout()
 plt.savefig('results/visualizations/community_comparison_sidebyside.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/community_comparison_sidebyside.png")
+print("Saved: results/visualizations/community_comparison_sidebyside.png")
 plt.close()
 
 # Visualization 4: Modularity comparison bar chart
@@ -263,7 +263,7 @@ elif max(modularities) > 0.3:
 ax.legend()
 plt.tight_layout()
 plt.savefig('results/visualizations/modularity_comparison.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/modularity_comparison.png")
+print("Saved: results/visualizations/modularity_comparison.png")
 plt.close()
 
 # Visualization 5: Network visualization with communities (sample of 200 nodes)
@@ -301,7 +301,7 @@ ax.set_title(f'Network Visualization with Communities (Louvain Algorithm)\nSampl
 ax.axis('off')
 plt.tight_layout()
 plt.savefig('results/visualizations/network_with_communities.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: results/visualizations/network_with_communities.png")
+print("Saved: results/visualizations/network_with_communities.png")
 plt.close()
 
 # ============================================================================
@@ -348,7 +348,7 @@ print("\nTop 5 Largest Communities (Louvain) - Detailed Analysis:")
 print(analysis_df.to_string(index=False))
 
 analysis_df.to_csv('results/community_detailed_analysis.csv', index=False)
-print("\n✓ Saved: results/community_detailed_analysis.csv")
+print("\nSaved: results/community_detailed_analysis.csv")
 
 # ============================================================================
 # STEP 8: CREATE SUMMARY STATISTICS
@@ -439,11 +439,11 @@ DETAILED COMMUNITY ANALYSIS (Top 5 Communities):
 
 FILES GENERATED:
 ================================================================================
-✓ Community assignment CSVs (Louvain and Fast Greedy)
-✓ Community size analysis
-✓ Algorithm comparison table
-✓ Detailed community characteristics
-✓ 5 visualizations (size distributions, comparison, network plot)
+Community assignment CSVs (Louvain and Fast Greedy)
+Community size analysis
+Algorithm comparison table
+Detailed community characteristics
+5 visualizations (size distributions, comparison, network plot)
 
 NEXT PHASE:
 ================================================================================
@@ -455,7 +455,7 @@ print(summary_stats)
 # Save summary
 with open('results/community_detection_summary.txt', 'w', encoding='utf-8') as f:
     f.write(summary_stats)
-print("✓ Saved: results/community_detection_summary.txt")
+print("Saved: results/community_detection_summary.txt")
 
 # ============================================================================
 # FINAL COMPLETION MESSAGE

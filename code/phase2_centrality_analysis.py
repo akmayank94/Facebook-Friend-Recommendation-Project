@@ -23,15 +23,15 @@ print("\n[STEP 1] Loading networks from Phase 1...")
 try:
     with open('results/networks/G_train.pkl', 'rb') as f:
         G_train = pickle.load(f)
-    print(f"✓ Training network loaded: {G_train.number_of_nodes()} nodes, {G_train.number_of_edges()} edges")
+    print(f"Training network loaded: {G_train.number_of_nodes()} nodes, {G_train.number_of_edges()} edges")
 
     with open('results/networks/G_original.pkl', 'rb') as f:
         G_original = pickle.load(f)
-    print(f"✓ Original network loaded: {G_original.number_of_nodes()} nodes, {G_original.number_of_edges()} edges")
+    print(f"Original network loaded: {G_original.number_of_nodes()} nodes, {G_original.number_of_edges()} edges")
 
     with open('results/networks/test_edges.pkl', 'rb') as f:
         test_edges = pickle.load(f)
-    print(f"✓ Test edges loaded: {len(test_edges)} edges")
+    print(f"Test edges loaded: {len(test_edges)} edges")
 
 except FileNotFoundError as e:
     print(f"ERROR: Could not find Phase 1 files: {e}")
@@ -53,7 +53,7 @@ degree_df = pd.DataFrame({
 })
 degree_df = degree_df.sort_values('Degree_Centrality', ascending=False).reset_index(drop=True)
 
-print(f"✓ Degree centrality calculated for {len(degree_centrality)} nodes")
+print(f"Degree centrality calculated for {len(degree_centrality)} nodes")
 print("\nTop 5 Nodes by Degree Centrality:")
 print(degree_df.head(5).to_string(index=False))
 
@@ -70,7 +70,7 @@ betweenness_df = pd.DataFrame({
 })
 betweenness_df = betweenness_df.sort_values('Betweenness_Centrality', ascending=False).reset_index(drop=True)
 
-print(f"✓ Betweenness centrality calculated for {len(betweenness_centrality)} nodes")
+print(f"Betweenness centrality calculated for {len(betweenness_centrality)} nodes")
 print("\nTop 5 Nodes by Betweenness Centrality:")
 print(betweenness_df.head(5).to_string(index=False))
 
@@ -87,7 +87,7 @@ closeness_df = pd.DataFrame({
 })
 closeness_df = closeness_df.sort_values('Closeness_Centrality', ascending=False).reset_index(drop=True)
 
-print(f"✓ Closeness centrality calculated for {len(closeness_centrality)} nodes")
+print(f"Closeness centrality calculated for {len(closeness_centrality)} nodes")
 print("\nTop 5 Nodes by Closeness Centrality:")
 print(closeness_df.head(5).to_string(index=False))
 
@@ -104,7 +104,7 @@ pagerank_df = pd.DataFrame({
 })
 pagerank_df = pagerank_df.sort_values('PageRank', ascending=False).reset_index(drop=True)
 
-print(f"✓ PageRank calculated for {len(pagerank)} nodes")
+print(f"PageRank calculated for {len(pagerank)} nodes")
 print("\nTop 5 Nodes by PageRank:")
 print(pagerank_df.head(5).to_string(index=False))
 
@@ -198,22 +198,22 @@ print("\n[STEP 2.7] Saving Results...")
 os.makedirs('results', exist_ok=True)
 
 degree_df.to_csv('results/centrality_degree.csv', index=False)
-print("✓ Saved: results/centrality_degree.csv")
+print("Saved: results/centrality_degree.csv")
 
 betweenness_df.to_csv('results/centrality_betweenness.csv', index=False)
-print("✓ Saved: results/centrality_betweenness.csv")
+print("Saved: results/centrality_betweenness.csv")
 
 closeness_df.to_csv('results/centrality_closeness.csv', index=False)
-print("✓ Saved: results/centrality_closeness.csv")
+print("Saved: results/centrality_closeness.csv")
 
 pagerank_df.to_csv('results/centrality_pagerank.csv', index=False)
-print("✓ Saved: results/centrality_pagerank.csv")
+print("Saved: results/centrality_pagerank.csv")
 
 comparison_df.to_csv('results/centrality_comparison.csv', index=False)
-print("✓ Saved: results/centrality_comparison.csv")
+print("Saved: results/centrality_comparison.csv")
 
 similarity_df.to_csv('results/similarity_measures.csv', index=False)
-print("✓ Saved: results/similarity_measures.csv")
+print("Saved: results/similarity_measures.csv")
 
 # ============================================================================
 # STEP 9: CREATE VISUALIZATIONS
@@ -234,7 +234,7 @@ ax.set_title("Top 20 Nodes by Degree Centrality (Ch. 2.1.3)", fontweight="bold",
 ax.grid(True, alpha=0.3, axis="x")
 plt.tight_layout()
 plt.savefig("results/visualizations/centrality_degree_top20.png", dpi=300, bbox_inches="tight")
-print("✓ Saved: results/visualizations/centrality_degree_top20.png")
+print("Saved: results/visualizations/centrality_degree_top20.png")
 plt.close()
 
 fig, ax = plt.subplots(figsize=(12, 6))
@@ -248,7 +248,7 @@ ax.set_title("Top 20 Nodes by Betweenness Centrality (Ch. 2.1.4)", fontweight="b
 ax.grid(True, alpha=0.3, axis="x")
 plt.tight_layout()
 plt.savefig("results/visualizations/centrality_betweenness_top20.png", dpi=300, bbox_inches="tight")
-print("✓ Saved: results/visualizations/centrality_betweenness_top20.png")
+print("Saved: results/visualizations/centrality_betweenness_top20.png")
 plt.close()
 
 fig, ax = plt.subplots(figsize=(12, 6))
@@ -262,7 +262,7 @@ ax.set_title("Top 20 Nodes by Closeness Centrality (Ch. 2.2)", fontweight="bold"
 ax.grid(True, alpha=0.3, axis="x")
 plt.tight_layout()
 plt.savefig("results/visualizations/centrality_closeness_top20.png", dpi=300, bbox_inches="tight")
-print("✓ Saved: results/visualizations/centrality_closeness_top20.png")
+print("Saved: results/visualizations/centrality_closeness_top20.png")
 plt.close()
 
 fig, ax = plt.subplots(figsize=(12, 6))
@@ -276,7 +276,7 @@ ax.set_title("Top 20 Nodes by PageRank (Ch. 4.5)", fontweight="bold", fontsize=1
 ax.grid(True, alpha=0.3, axis="x")
 plt.tight_layout()
 plt.savefig("results/visualizations/centrality_pagerank_top20.png", dpi=300, bbox_inches="tight")
-print("✓ Saved: results/visualizations/centrality_pagerank_top20.png")
+print("Saved: results/visualizations/centrality_pagerank_top20.png")
 plt.close()
 
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -333,7 +333,7 @@ axes[1, 1].grid(True, alpha=0.3, axis="y")
 
 plt.tight_layout()
 plt.savefig("results/visualizations/centrality_comparison_4measures.png", dpi=300, bbox_inches="tight")
-print("✓ Saved: results/visualizations/centrality_comparison_4measures.png")
+print("Saved: results/visualizations/centrality_comparison_4measures.png")
 plt.close()
 
 # ============================================================================

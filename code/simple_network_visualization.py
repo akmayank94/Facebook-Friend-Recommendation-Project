@@ -23,8 +23,8 @@ with open('results/networks/G_train.pkl', 'rb') as f:
 communities_df = pd.read_csv('results/communities_louvain.csv')
 communities = dict(zip(communities_df['Node'], communities_df['Community_Louvain']))
 
-print(f"✓ Network: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges")
-print(f"✓ Communities: {len(set(communities.values()))} detected")
+print(f"Network: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges")
+print(f"Communities: {len(set(communities.values()))} detected")
 
 # Get unique communities and assign colors
 unique_comms = sorted(set(communities.values()))
@@ -36,7 +36,7 @@ if num_comms <= 20:
 else:
     colors = plt.cm.hsv(np.linspace(0, 1, num_comms))
 
-print(f"✓ Color palette created for {num_comms} communities")
+print(f"✓Color palette created for {num_comms} communities")
 
 # ============================================================================
 # VISUALIZATION 1: FULL NETWORK - ALL NODES
@@ -47,7 +47,7 @@ print("    Computing layout... (this takes 2-3 minutes, please wait)")
 
 # Spring layout - spreads nodes based on connections
 pos = nx.spring_layout(G, k=0.15, iterations=20, seed=42, scale=10)
-print("    ✓ Layout computed!")
+print("    Layout computed!")
 
 # Assign colors to nodes based on community
 node_colors = []
@@ -116,7 +116,7 @@ plt.savefig('results/visualizations/FULL_NETWORK_COMMUNITIES.png',
            bbox_inches='tight', 
            facecolor='white',
            edgecolor='none')
-print("✓ SAVED: results/visualizations/FULL_NETWORK_COMMUNITIES.png")
+print("✓SAVED: results/visualizations/FULL_NETWORK_COMMUNITIES.png")
 plt.close()
 
 # ============================================================================
@@ -128,7 +128,7 @@ print("    Computing layout... (2 minutes)")
 
 # Different algorithm - may look better
 pos2 = nx.spring_layout(G, k=0.3, iterations=30, seed=42, scale=20)
-print("    ✓ Layout computed!")
+print("    Layout computed!")
 
 fig, ax = plt.subplots(figsize=(24, 24), facecolor='white')
 
@@ -158,7 +158,7 @@ plt.savefig('results/visualizations/FORCE_DIRECTED_COMMUNITIES.png',
            dpi=300,
            bbox_inches='tight',
            facecolor='white')
-print("✓ SAVED: results/visualizations/FORCE_DIRECTED_COMMUNITIES.png")
+print("SAVED: results/visualizations/FORCE_DIRECTED_COMMUNITIES.png")
 plt.close()
 
 # ============================================================================
@@ -217,7 +217,7 @@ plt.savefig('results/visualizations/TOP3_COMMUNITIES_DETAIL.png',
            dpi=300,
            bbox_inches='tight',
            facecolor='white')
-print("✓ SAVED: results/visualizations/TOP3_COMMUNITIES_DETAIL.png")
+print("SAVED: results/visualizations/TOP3_COMMUNITIES_DETAIL.png")
 plt.close()
 
 # ============================================================================
@@ -228,9 +228,9 @@ print("\n" + "=" * 80)
 print("SUCCESS! NETWORK VISUALIZATIONS COMPLETE!")
 print("=" * 80)
 print("\nGenerated 3 visualizations:")
-print("  ✓ FULL_NETWORK_COMMUNITIES.png (24x24, all 4,039 nodes)")
-print("  ✓ FORCE_DIRECTED_COMMUNITIES.png (24x24, different layout)")
-print("  ✓ TOP3_COMMUNITIES_DETAIL.png (24x8, zoom on top 3)")
+print("  FULL_NETWORK_COMMUNITIES.png (24x24, all 4,039 nodes)")
+print("  FORCE_DIRECTED_COMMUNITIES.png (24x24, different layout)")
+print("  TOP3_COMMUNITIES_DETAIL.png (24x8, zoom on top 3)")
 print("\nLocation: results/visualizations/")
 print("\nWhat you'll see:")
 print("  • Colorful clusters = different communities")
