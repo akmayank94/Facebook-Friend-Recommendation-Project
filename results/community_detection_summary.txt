@@ -1,0 +1,99 @@
+
+PHASE 3: COMMUNITY DETECTION SUMMARY
+================================================================================
+
+NETWORK INFORMATION:
+Training Network Nodes: 4039
+Training Network Edges: 70588
+
+LOUVAIN ALGORITHM RESULTS (Ch. 5.4.2):
+================================================================================
+Number of Communities: 37
+Modularity Score: 0.8342
+
+Community Size Statistics:
+  Largest community: 543 nodes
+  Smallest community: 1 nodes
+  Average community size: 109.16 nodes
+  Median community size: 1 nodes
+
+Top 10 Largest Communities:
+  1. Community 25: 543 nodes
+  2. Community 4: 528 nodes
+  3. Community 12: 447 nodes
+  4. Community 8: 439 nodes
+  5. Community 3: 425 nodes
+  6. Community 0: 334 nodes
+  7. Community 10: 327 nodes
+  8. Community 26: 246 nodes
+  9. Community 15: 237 nodes
+  10. Community 23: 205 nodes
+
+
+FAST GREEDY ALGORITHM RESULTS (Ch. 5.4.2):
+================================================================================
+Number of Communities: 32
+Modularity Score: 0.7758
+
+Community Size Statistics:
+  Largest community: 1013 nodes
+  Smallest community: 1 nodes
+  Average community size: 126.22 nodes
+  Median community size: 1 nodes
+
+Top 10 Largest Communities:
+  1. Community 0: 1013 nodes
+  2. Community 1: 759 nodes
+  3. Community 2: 543 nodes
+  4. Community 3: 518 nodes
+  5. Community 4: 352 nodes
+  6. Community 5: 299 nodes
+  7. Community 6: 229 nodes
+  8. Community 7: 205 nodes
+  9. Community 8: 61 nodes
+  10. Community 9: 38 nodes
+
+
+ALGORITHM COMPARISON:
+================================================================================
+                 Metric            Louvain   Fast Greedy
+  Number of Communities                 37            32
+       Modularity Score             0.8342        0.7758
+ Largest Community Size                543          1013
+Smallest Community Size                  1             1
+ Average Community Size             109.16        126.22
+         Algorithm Type Optimization-based Agglomerative
+
+MODULARITY INTERPRETATION (Ch. 5.4.2):
+Louvain: VERY STRONG community structure (Q > 0.5)
+Fast Greedy: VERY STRONG community structure (Q > 0.5)
+
+
+KEY INSIGHTS:
+================================================================================
+1. Both algorithms found strong community structure in the Facebook network
+2. Communities represent friend groups or social circles
+3. High modularity indicates clear separation between communities
+4. Different community sizes reveal hierarchical social structure
+5. Internal density shows how tightly connected each community is
+
+DETAILED COMMUNITY ANALYSIS (Top 5 Communities):
+================================================================================
+ Community_ID  Size  Internal_Edges  External_Edges Internal_Density Ratio_Internal_External
+           25   543            4258              17           0.0289                  236.56
+            4   528            6856             228           0.0493                   29.94
+           12   447           13436             510           0.1348                   26.29
+            8   439            9235             493           0.0961                   18.69
+            3   425            4836             334           0.0537                   14.44
+
+FILES GENERATED:
+================================================================================
+✓ Community assignment CSVs (Louvain and Fast Greedy)
+✓ Community size analysis
+✓ Algorithm comparison table
+✓ Detailed community characteristics
+✓ 5 visualizations (size distributions, comparison, network plot)
+
+NEXT PHASE:
+================================================================================
+Phase 4: Link Prediction - Use communities to improve friend recommendations

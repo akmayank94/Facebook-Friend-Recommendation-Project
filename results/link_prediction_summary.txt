@@ -1,0 +1,122 @@
+
+PHASE 4: LINK PREDICTION SUMMARY
+================================================================================
+
+OBJECTIVE:
+Predict which non-connected users are likely to become friends in future,
+using similarity measures and community information.
+
+DATASET:
+Training Network: 4039 nodes, 70588 edges
+Test Edges (Ground Truth): 17646 edges
+Candidate Pairs (Non-edges): 88230 sampled pairs
+
+LINK PREDICTION METHODS (Ch. 2.3-2.4, 4.5):
+================================================================================
+
+1. COMMON NEIGHBORS (CNN)
+   Score: Count of shared friends
+   Performance: 34.9359 (true), 0.4629 (false)
+
+2. JACCARD COEFFICIENT
+   Score: Fraction of union that are common neighbors
+   Range: 0-1
+   Performance: 0.2757 (true), 0.0066 (false)
+
+3. ADAMIC-ADAR INDEX
+   Score: Weighted sum of 1/log(degree) for common neighbors
+   Performance: 7.7548 (true), 0.0967 (false)
+
+4. PREFERENTIAL ATTACHMENT
+   Score: Product of degrees (rich get richer)
+   Performance: 7651.4986 (true), 1169.6354 (false)
+
+ENSEMBLE METHODS:
+================================================================================
+
+1. COMBINED SCORE (Average of 4 methods)
+   Average true score: 0.1808
+   Average false score: 0.0049
+
+2. COMMUNITY BOOST (1.5x multiplier if same community)
+   Average true score: 0.4455
+   Average false score: 0.0087
+   Improvement: 146.33%
+
+KEY FINDINGS:
+================================================================================
+
+1. All methods show clear separation between true and false edges
+   → True edges have higher scores than false edges
+
+2. Community information BOOSTS prediction accuracy
+   → 95.8% of test edges are within same community
+
+3. Adamic-Adar Index often performs best
+   → Emphasizes rare common neighbors
+
+4. Preferential Attachment shows different pattern
+   → Captures high-degree node connections
+
+EVALUATION METRICS (Top 20 Recommendations):
+================================================================================
+
+                 Method       Metric  Value
+       Common Neighbors Precision@20 1.0000
+       Common Neighbors    Recall@20 0.0011
+       Common Neighbors        F1@20 0.0023
+       Common Neighbors      AUC-ROC 0.9885
+    Jaccard Coefficient Precision@20 0.8500
+    Jaccard Coefficient    Recall@20 0.0010
+    Jaccard Coefficient        F1@20 0.0019
+    Jaccard Coefficient      AUC-ROC 0.9865
+      Adamic-Adar Index Precision@20 1.0000
+      Adamic-Adar Index    Recall@20 0.0011
+      Adamic-Adar Index        F1@20 0.0023
+      Adamic-Adar Index      AUC-ROC 0.9897
+Preferential Attachment Precision@20 0.8000
+Preferential Attachment    Recall@20 0.0009
+Preferential Attachment        F1@20 0.0018
+Preferential Attachment      AUC-ROC 0.8281
+         Combined Score Precision@20 1.0000
+         Combined Score    Recall@20 0.0011
+         Combined Score        F1@20 0.0023
+         Combined Score      AUC-ROC 0.9864
+        Community Boost Precision@20 1.0000
+        Community Boost    Recall@20 0.0011
+        Community Boost        F1@20 0.0023
+        Community Boost      AUC-ROC 0.9876
+
+INTERPRETATION:
+================================================================================
+
+PRECISION@K: What fraction of top-k recommendations are correct?
+- High precision means recommendations are reliable
+- Precision@20: Focus on top 20 most confident recommendations
+
+RECALL@K: What fraction of all true links are in top-k?
+- High recall means we find most of the true connections
+- Recall@20: How many of 17,647 test edges can we find in top 20?
+
+AUC-ROC: Overall ranking quality
+- Measures ability to rank true edges higher than false edges
+- AUC = 0.5 (random), AUC = 1.0 (perfect)
+
+RECOMMENDATION STRATEGY:
+================================================================================
+
+Best Approach: Use Community-Boosted Combined Score
+Reason: Combines multiple similarity measures + community information
+
+Top Recommendations:
+1. Sort by community_boost score
+2. Take top-k (e.g., k=20) for each user
+3. These are predicted future friends
+
+NEXT STEPS:
+================================================================================
+
+Phase 5: Final Report
+- Compile all phases into comprehensive report
+- Include methods, results, visualizations, conclusions
+- Present findings on community structure and link prediction

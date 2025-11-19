@@ -20,7 +20,7 @@ print("Data Preparation & Unit 1 Analysis")
 print("=" * 80)
 
 # ============================================================================
-# STEP 1: LOAD THE FACEBOOK NETWORK
+# 1: LOAD THE FACEBOOK NETWORK
 # ============================================================================
 
 file_path = 'data/facebook_combined/facebook_combined.txt'
@@ -47,7 +47,7 @@ except Exception as e:
     exit()
 
 # ============================================================================
-# STEP 2: COMPUTE BASIC NETWORK PROPERTIES
+# 2: COMPUTE BASIC NETWORK PROPERTIES
 # ============================================================================
 
 print("Computing network properties...")
@@ -82,10 +82,10 @@ else:
     G_largest = G.subgraph(largest_cc)
     avg_shortest_path = nx.average_shortest_path_length(G_largest)
 
-print("✓ Network properties computed!")
+print("Network properties computed!")
 
 # ============================================================================
-# STEP 3: DISPLAY AND SAVE SUMMARY TABLE
+# 3: DISPLAY AND SAVE SUMMARY TABLE
 # ============================================================================
 
 print("" + "=" * 80)
@@ -141,7 +141,7 @@ df_summary.to_csv('results/network_properties_summary.csv', index=False)
 print("✓ Summary saved: results/network_properties_summary.csv")
 
 # ============================================================================
-# STEP 4: CREATE DEGREE DISTRIBUTION VISUALIZATION
+# 4: CREATE DEGREE DISTRIBUTION VISUALIZATION
 # ============================================================================
 
 print("Creating degree distribution visualization...")
@@ -177,7 +177,7 @@ print("✓ Visualization saved: results/visualizations/degree_distribution.png")
 plt.close()
 
 # ============================================================================
-# STEP 5: PREPARE DATA FOR LINK PREDICTION
+# 5: PREPARE DATA FOR LINK PREDICTION
 # ============================================================================
 
 print("Preparing data for link prediction...")
@@ -195,7 +195,7 @@ print(f"  Training edges (80%): {G_train.number_of_edges()}")
 print(f"  Test edges (20%): {len(test_edges)}")
 
 # ============================================================================
-# STEP 6: SAVE NETWORKS FOR LATER PHASES
+# 6: SAVE NETWORKS FOR LATER PHASES
 # ============================================================================
 
 print("Saving networks for later phases...")
@@ -228,7 +228,4 @@ print("  └─ results/networks/")
 print("      ├─ G_original.pkl")
 print("      ├─ G_train.pkl")
 print("      └─ test_edges.pkl")
-print("Next Steps:")
-print("  Phase 2: Centrality Analysis (Unit 2)")
-print("  Phase 3: Community Detection (Unit 4)")
 print("=" * 80)

@@ -1,0 +1,7 @@
+Metric,Louvain,Fast Greedy
+Number of Communities,37,32
+Modularity Score,0.8342,0.7758
+Largest Community Size,543,1013
+Smallest Community Size,1,1
+Average Community Size,109.16,126.22
+Algorithm Type,Optimization-based,Agglomerative
